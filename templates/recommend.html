@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% set rows = 3 %}
+{% set cols = 3 %}
+
+{% for i in image_list %}
+    {% if loop.index0 // rows != (loop.index0 - 1) // rows %}
+        <div class="row">
+    {% endif %}
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <img id="{{i | safe}}" src="{{ url_for('static', filename='images/' ~ i ) | safe}}" alt="{{i|safe}}" width="256" height="256" style="padding-bottom: 5%;">
+    </div>
+    {% if loop.index0 % cols  == 2 %}
+        </div>
+    {% endif %}
+{% endfor %}
+{% endblock %}
